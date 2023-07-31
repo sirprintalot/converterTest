@@ -24,7 +24,7 @@ public class ConverterApp {
             menuOptionValue = menuChoice.nextInt();
             menuChoice.nextLine();
             
-            switch (menuOptionValue) {
+            switch (menuOptionValue) {         
                 case 1 -> Converter.convertCurrency(USD, BOLIVIAN_PESO, userInput);
                 case 2 -> Converter.convertCurrency(BOLIVIAN_PESO, USD, userInput);
                 case 3 -> Converter.convertCurrency(USD, ARGENTINIAN_PESO_BLUE, userInput);

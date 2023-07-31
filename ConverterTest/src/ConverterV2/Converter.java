@@ -152,9 +152,24 @@ public class Converter {
 
         System.out.println("You choose to convert " + fromCurrency.getName() + " to " + toCurrency.getName());
         System.out.println("Enter the amount to be converted: ");
+
         double rate = getExchangeRate(fromCurrency, toCurrency);
-        double amountToConvert = scanner.nextDouble();
-//        scanner.nextLine();
+        double amountToConvert;
+
+        while (true) {
+            if (!scanner.hasNextDouble()) {
+                System.out.println("Only numbers allowed!!");
+                scanner.nextLine(); // Consume invalid input
+            } else {
+                amountToConvert = scanner.nextDouble();
+                if (amountToConvert > 0) {
+                    break;
+                } else {
+                    System.out.println("Numbers bigger than 0.");
+                }
+            }
+        }
+
         double total = rate * amountToConvert;
         System.out.printf("%.2f %s is equal to: %.2f %s%n", amountToConvert, fromCurrency.getName(), total,
                 toCurrency.getName());
