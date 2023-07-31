@@ -30,9 +30,9 @@ public class Converter {
 
     //BOL peso
     public static final double BOLIVIAN_PESO_TO_US_DOLLAR = 1 / USD_TO_BOLIVIAN_PESO;
-    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_BLUE = 551 / 6.95 ;
-    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_OFFICIAL =  273.65 / 6.95 ;
-public static final double BOLIVIAN_PESO_TO_BRAZILIAN_REAL = 4.72/ 6.95 ;
+    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_BLUE = 551 / 6.95;
+    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_OFFICIAL = 273.65 / 6.95;
+    public static final double BOLIVIAN_PESO_TO_BRAZILIAN_REAL = 4.72 / 6.95;
 
     //Arg peso
     public static final double ARGENTINIAN_PESO_OFFICIAL_TO_US_DOLLAR = 1 / US_DOLLAR_TO_ARGENTINIAN_PESO_OFFICIAL;
@@ -50,26 +50,20 @@ public static final double BOLIVIAN_PESO_TO_BRAZILIAN_REAL = 4.72/ 6.95 ;
     public static final double BRAZILIAN_REAL_TO_ARGENTINIAN_PESO_BLUE = 1 / ARGENTINIAN_PESO_BLUE_TO_BRAZILIAN_REAL;
 
     public static void displayMenu() {
-        System.out.println("""
-                ============================================================================
-                ----------------------------CONVERTER 2.0----------------------------------
-                CHOOSE AN OPTION:\s
-                1) US dollar to bolivian peso.
-                2) Bolivian peso to us dollar.
-                3) US dollar to argentinian blue peso.
-                4) US dollar to argentinian official peso.
-                5) Argentinian peso blue to US dollar.
-                6) Argentinian peso official to US dollar.
-                7) Bolivian peso to Argentinian Blue peso.
-                8) Bolivian peso to Argentinian official peso.
-                9) Argentinian peso blue to Bolivian peso.
-                10) Argentinian peso official to Bolivian peso.
-                11) Brazilian real to Bolivian peso.
-                12) Bolivian peso to Brazilian real.
-                13) Brazilian peso to Argentinian peso blue.
-                14) Argentinian peso blue to Brazilian real.
-                99) EXIT.               \s
-                 """);
+        System.out.println("============================================================================");
+        System.out.println("-----------------------------CONVERTER 2.0----------------------------------");
+        System.out.println("CHOOSE AN OPTION:");
+
+        int option = 1;
+         for(Currency fromCurrency : Currency.values()){
+             for(Currency toCurrency : Currency.values()){
+                 if (fromCurrency != toCurrency){
+                     System.out.println(option + ") " + fromCurrency.getName() + " to " + toCurrency.getName() + ".");
+                     option++;
+                 }
+             }
+         }
+        System.out.println("99) EXIT.");
         System.out.println("====================================================================");
     }
 
