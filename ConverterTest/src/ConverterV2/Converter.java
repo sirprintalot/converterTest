@@ -30,17 +30,17 @@ public class Converter {
 
     //BOL peso
     public static final double BOLIVIAN_PESO_TO_US_DOLLAR = 1 / USD_TO_BOLIVIAN_PESO;
-    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_BLUE = 6.95 / 551;
-    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_OFFICIAL = 6.95 / 273.65;
-    public static final double BOLIVIAN_PESO_TO_BRAZILIAN_REAL = 6.95 / 4.72;
+    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_BLUE = 551 / 6.95 ;
+    public static final double BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_OFFICIAL =  273.65 / 6.95 ;
+public static final double BOLIVIAN_PESO_TO_BRAZILIAN_REAL = 4.72/ 6.95 ;
 
     //Arg peso
     public static final double ARGENTINIAN_PESO_OFFICIAL_TO_US_DOLLAR = 1 / US_DOLLAR_TO_ARGENTINIAN_PESO_OFFICIAL;
     public static final double ARGENTINIAN_PESO_BLUE_TO_US_DOLLAR = 1 / US_DOLLAR_TO_ARGENTINIAN_PESO_BLUE;
     public static final double ARGENTINIAN_PESO_BLUE_TO_BOLIVIAN_PESO = 1 / BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_BLUE;
     public static final double ARGENTINIAN_PESO_OFFICIAL_TO_BOLIVIAN_PESO = 1 / BOLIVIAN_PESO_TO_ARGENTINIAN_PESO_OFFICIAL;
-    public static final double ARGENTINIAN_PESO_BLUE_TO_BRAZILIAN_REAL = 551 / 4.72;
-    public static final double ARGENTINIAN_PESO_OFFICIAL_TO_BRAZILIAN_REAL = 273.65 / 4.72;
+    public static final double ARGENTINIAN_PESO_BLUE_TO_BRAZILIAN_REAL = 4.72 / 551;
+    public static final double ARGENTINIAN_PESO_OFFICIAL_TO_BRAZILIAN_REAL = 4.72 / 273.65;
 
     //BR real
     public static final double BRAZILIAN_REAL_TO_US_DOLLAR = 1 / US_DOLLAR_TO_BRAZILIAN_REAL;
@@ -75,25 +75,23 @@ public class Converter {
 
     public static double getExchangeRate(Currency fromCurrency, Currency toCurrency) {
         switch (fromCurrency) {
-            case USD : {
+            case USD -> {
                 switch (toCurrency) {
-                    case BOLIVIAN_PESO : {
+                    case BOLIVIAN_PESO -> {
                         return USD_TO_BOLIVIAN_PESO;
                     }
-                    case ARGENTINIAN_PESO_OFFICIAL : {
+                    case ARGENTINIAN_PESO_OFFICIAL -> {
                         return US_DOLLAR_TO_ARGENTINIAN_PESO_OFFICIAL;
                     }
-                    case ARGENTINIAN_PESO_BLUE : {
+                    case ARGENTINIAN_PESO_BLUE -> {
                         return US_DOLLAR_TO_ARGENTINIAN_PESO_BLUE;
                     }
-                    case BRAZILIAN_REAL : {
+                    case BRAZILIAN_REAL -> {
                         return US_DOLLAR_TO_BRAZILIAN_REAL;
                     }
-
                 }
-                break;
             }
-            case BOLIVIAN_PESO : {
+            case BOLIVIAN_PESO -> {
                 switch (toCurrency) {
                     case USD -> {
                         return BOLIVIAN_PESO_TO_US_DOLLAR;
@@ -108,10 +106,8 @@ public class Converter {
                         return BOLIVIAN_PESO_TO_BRAZILIAN_REAL;
                     }
                 }
-                break;
             }
-
-            case ARGENTINIAN_PESO_BLUE : {
+            case ARGENTINIAN_PESO_BLUE -> {
                 switch (toCurrency) {
                     case USD -> {
                         return ARGENTINIAN_PESO_BLUE_TO_US_DOLLAR;
@@ -123,10 +119,8 @@ public class Converter {
                         return ARGENTINIAN_PESO_BLUE_TO_BRAZILIAN_REAL;
                     }
                 }
-                break;
             }
-
-            case ARGENTINIAN_PESO_OFFICIAL : {
+            case ARGENTINIAN_PESO_OFFICIAL -> {
                 switch (toCurrency) {
                     case USD -> {
                         return ARGENTINIAN_PESO_OFFICIAL_TO_US_DOLLAR;
@@ -138,10 +132,8 @@ public class Converter {
                         return ARGENTINIAN_PESO_OFFICIAL_TO_BRAZILIAN_REAL;
                     }
                 }
-                break;
             }
-
-            case BRAZILIAN_REAL : {
+            case BRAZILIAN_REAL -> {
                 switch (toCurrency) {
                     case USD -> {
                         return BRAZILIAN_REAL_TO_US_DOLLAR;
@@ -156,25 +148,22 @@ public class Converter {
                         return BRAZILIAN_REAL_TO_ARGENTINIAN_PESO_BLUE;
                     }
                 }
-                break;
             }
-
         }
-        throw new IllegalArgumentException("Unsupported currency");
+//        throw new IllegalArgumentException("Unsupported currency");
+        return 0.0;
     }
 
-    public static void convertCurrency(Currency fromCurrency, Currency toCurrency, Scanner amount) {
+    public static void convertCurrency(Currency fromCurrency, Currency toCurrency, Scanner scanner) {
 
-        double rate = getExchangeRate(fromCurrency, toCurrency);
-        double amountToConvert = amount.nextDouble();
-        amount.nextLine();
-        double total = rate * amountToConvert;
-        
         System.out.println("You choose to convert " + fromCurrency.getName() + " to " + toCurrency.getName());
         System.out.println("Enter the amount to be converted: ");
-        System.out.printf("%.2f %s is equal to: %.2f %s%n", amountToConvert, fromCurrency.getName(), total, toCurrency.getName());
+        double rate = getExchangeRate(fromCurrency, toCurrency);
+        double amountToConvert = scanner.nextDouble();
+//        scanner.nextLine();
+        double total = rate * amountToConvert;
+        System.out.printf("%.2f %s is equal to: %.2f %s%n", amountToConvert, fromCurrency.getName(), total,
+                toCurrency.getName());
 
     }
-
-
 }

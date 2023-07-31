@@ -3,27 +3,28 @@ package ConverterV2;
 import java.util.*;
 
 import static ConverterV2.Converter.Currency.*;
-import static ConverterV2.Converter.convertCurrency;
 import static ConverterV2.Converter.displayMenu;
 
 
 public class ConverterApp {
     public static void main(String[] args) {
-        
-        Scanner userInput = new Scanner(System.in);
-        int inputValue = 0;
+        Scanner menuChoice = new Scanner(System.in);
+        int menuOptionValue = 0;
 
-        while (inputValue != 99) {
+        Scanner userInput = new Scanner(System.in);
+
+        while (menuOptionValue != 99) {
             displayMenu();
 
-            while (!userInput.hasNextInt()){
+            while (!menuChoice.hasNextInt()) {
                 System.out.println("Only numbers ");
-                userInput.next();
+                menuChoice.next();
             }
-            inputValue = userInput.nextInt();
-            userInput.nextLine();
 
-            switch (inputValue) {
+            menuOptionValue = menuChoice.nextInt();
+            menuChoice.nextLine();
+            
+            switch (menuOptionValue) {
                 case 1 -> Converter.convertCurrency(USD, BOLIVIAN_PESO, userInput);
                 case 2 -> Converter.convertCurrency(BOLIVIAN_PESO, USD, userInput);
                 case 3 -> Converter.convertCurrency(USD, ARGENTINIAN_PESO_BLUE, userInput);
@@ -43,7 +44,7 @@ public class ConverterApp {
             }
             System.out.println();
         }
-        userInput.close();
+        menuChoice.close();
     }
 
 }
